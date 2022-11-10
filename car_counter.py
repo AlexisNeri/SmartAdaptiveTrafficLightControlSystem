@@ -7,7 +7,7 @@ def car_counter(frame, target_labels, debug_log=False):
     object_count = 0
     # TODO: Make frame resizing dynamic to 1/2 of input
     frame = imutils.resize(frame, width=960, height=540)
-    bbox, label, conf = cv.detect_common_objects(frame)
+    bbox, label, conf = cv.detect_common_objects(frame, confidence=0.25, model='yolov4-tiny')
     if debug_log:
         print(bbox, label, conf)
     for current_label in target_labels:

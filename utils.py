@@ -21,5 +21,5 @@ def keep_nth_file(frame_folder, nth_file):
 
 # Convert your videos to frames, so you can train your custom weights
 if __name__ == '__main__':
-    get_frames('D:\\DataSet\\Video\\DS8_1080P_60FPS.MP4', 'D:\\DataSet\\Frames', 'c')
-    keep_nth_file('D:\\DataSet\\Frames', 240)
+    get_frames('D:\\DataSet\\Video\\DS3_4K_30FPS.MP4', 'D:\\DataSet\\Frames', 'c')
+    keep_nth_file('D:\\DataSet\\Frames', 60)

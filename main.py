@@ -32,10 +32,10 @@ def main_module(main_street_vsource, secondary_street_vsource, show_output=False
         # Process 1 frame per second
         if counter == main_vsource_fps/2:
             street_1_count, street_1_bbox = car_counter.car_counter(main_frame,
-                                                                    ['motorcycle', 'car', 'truck', 'bus', 'cell phone'],
+                                                                    ['bicycle, motorcycle', 'car', 'truck', 'bus'],
                                                                     debug_log=show_logs)
             street_2_count, street_2_bbox = car_counter.car_counter(secondary_frame,
-                                                                    ['motorcycle', 'car', 'truck', 'bus', 'cell phone'],
+                                                                    ['bicycle, motorcycle', 'car', 'truck', 'bus'],
                                                                     debug_log=show_logs)
             main_road, time = decision_maker.decision_maker(street_1_count, street_2_count, time, main_road)
             if show_count:

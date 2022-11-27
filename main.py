@@ -57,6 +57,6 @@ def main_module(main_street_vsource, secondary_street_vsource, show_output=False
     cv2.destroyAllWindows()
 
 
+# TODO: Change video routes from hardcoded to dynamic
 if __name__ == '__main__':
-    # TODO: Change video routes from hardcoded to dynamic
     main_module('Video/DJI_0054.MP4', 'Video/DJI_0055.MP4', show_output=True, show_count=True)

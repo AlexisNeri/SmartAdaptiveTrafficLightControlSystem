@@ -1,6 +1,10 @@
 import imutils
-import cvlib as cv
+from cvlib.object_detection import YOLO
 from cvlib.object_detection import draw_bbox
+
+yolo = YOLO('dataset/custom_yolov4_weights/yolov4-tiny-custom_best.weights',
+            'dataset/custom_yolov4_weights/yolov4-tiny-custom.cfg',
+            'dataset/custom_yolov4_weights/obj.names', version='yolov4-tiny')
 
 
 def car_counter(frame, target_labels, debug_log=False):
@@ -9,7 +13,7 @@ def car_counter(frame, target_labels, debug_log=False):
         image_width = int(frame.shape[1]/2)
         image_height = int(frame.shape[0]/2)
         frame = imutils.resize(frame, width=image_width, height=image_height)
-    bbox, label, conf = cv.detect_common_objects(frame, confidence=0.25, model='yolov4-tiny')
+    bbox, label, conf = yolo.detect_objects(frame)
     if debug_log:
         print(bbox, label, conf)
     for current_label in target_labels:

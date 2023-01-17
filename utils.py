@@ -2,7 +2,7 @@ import cvlib as cv
 import os
 
 
-def get_frames(video_route, frames_folder_route, prefix):
+def get_frames(video_route, frames_folder_route, prefix=''):
     # Convert your videos to frames, so you can train your custom weights
     cv.get_frames(video_route, save_dir=frames_folder_route, save_prefix=prefix)
 
@@ -40,6 +40,6 @@ def relabel_data(label_folder, current_label, new_label):
 
 
 if __name__ == '__main__':
-    # get_frames('D:\\DataSet\\Video\\DS3_4K_30FPS.MP4', 'D:\\DataSet\\Frames', 'c')
-    # keep_nth_file('D:\\DataSet\\Frames', 60)
-    relabel_data(r'E:\DS\Labels', '0', '2')
+    get_frames(r'D:\DataSet\Video\DJI_0058_Candidate.MP4', r'D:\DataSet\Frames', prefix='c')
+    keep_nth_file(r'D:\DataSet\Frames', 120)
+    # relabel_data(r'dataset/labels', '9', '0')

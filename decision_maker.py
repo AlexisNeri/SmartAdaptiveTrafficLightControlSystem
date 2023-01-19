@@ -11,11 +11,10 @@ green_2 = LED(18)
 
 
 def decision_maker(street_1_counter, street_2_counter, time_last_change, current_main_road):
+    # If counter for street on red phase is greater than counter for street on green phase
+    # or waiting time exceed current hardcoded values, interchange states
     if current_main_road == 1:
-        # If counter for street on red phase is greater than counter for street on green phase or waiting time exceed
-        # 3 minutes, interchange states
-        # TODO: Change hardcoded max values for current values used at target intersection
-        if street_2_counter > street_1_counter or time_last_change >= 180:
+        if street_2_counter > street_1_counter or time_last_change >= 42:
             red_1.off()
             yellow_1.on()
             green_1.off()
@@ -32,7 +31,7 @@ def decision_maker(street_1_counter, street_2_counter, time_last_change, current
             current_main_road = 2
             time_last_change = 0
     else:
-        if street_1_counter > street_2_counter or time_last_change >= 180:
+        if street_1_counter > street_2_counter or time_last_change >= 26:
             red_2.off()
             yellow_2.on()
             green_2.off()

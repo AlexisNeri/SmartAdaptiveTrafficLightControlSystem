@@ -1,9 +1,9 @@
 import imutils
 from cvlib.object_detection import YOLO
 
-yolo = YOLO('dataset/custom_yolo_weights/yolov7-tiny-custom_final.weights',
-            'dataset/custom_yolo_weights/yolov7-tiny-custom.cfg',
-            'dataset/custom_yolo_weights/obj.names', version='yolov7-tiny')
+yolo = YOLO('dataset/custom_yolo_weights/yolov4-tiny-custom_final.weights',
+            'dataset/custom_yolo_weights/yolov4-tiny-custom.cfg',
+            'dataset/custom_yolo_weights/obj.names', version='yolov4-tiny')
 
 
 def car_counter(frame, target_labels, debug_log=False):

@@ -2,4 +2,5 @@ Video
 venv
 .idea
 __pycache__
+val_frames
 *.xlsx

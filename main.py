@@ -1,3 +1,4 @@
+import os.path
 import car_counter
 import decision_maker
 import cv2
@@ -7,14 +8,16 @@ import datetime
 import xlsxwriter
 
 
-def main_module(main_street_vsource, secondary_street_vsource, show_output=False, show_inf_logs=False):
+def main_module(main_street_vsource, secondary_street_vsource, show_output=False, save_frames_to_disk=False,
+                show_inf_logs=False):
     timer = 0
     counter = 0
     main_road = 0
     current_row = 0
     column = 0
-    filename = str(datetime.datetime.now()).replace(':', '-')
-    workbook = xlsxwriter.Workbook('{}.xlsx'.format(filename))
+    timestamp = str(datetime.datetime.now()).replace(':', '-')
+    timestamp = timestamp.replace(' ', '_')
+    workbook = xlsxwriter.Workbook('{}.xlsx'.format(timestamp))
     worksheet = workbook.add_worksheet(name='Results')
     worksheet.write_row(current_row, column, ('street_1_count', 'street_2_count', 'inference_time', 'main_road',
                                               'time_last_change'))
@@ -56,6 +59,11 @@ def main_module(main_street_vsource, secondary_street_vsource, show_output=False
             if show_output:
                 cv2.imshow('Street #1', street_1_bbox)
                 cv2.imshow('Street #2', street_2_bbox)
+            if save_frames_to_disk:
+                cv2.imwrite('val_frames{0}street_1_{1}_{2}.jpg'.format(os.path.sep, timestamp, current_row),
+                            street_1_bbox)
+                cv2.imwrite('val_frames{0}street_2_{1}_{2}.jpg'.format(os.path.sep, timestamp, current_row),
+                            street_2_bbox)
 
         counter += 1
         if counter == main_vsource_fps:
@@ -73,4 +81,4 @@ def main_module(main_street_vsource, secondary_street_vsource, show_output=False
 
 # TODO: Change video routes from hardcoded to dynamic
 if __name__ == '__main__':
-    main_module('Video/DJI_0075CM.MP4', 'Video/DJI_0076CS.MP4', show_output=True)
+    main_module('Video/DJI_0075CM.MP4', 'Video/DJI_0076CS.MP4', show_output=True, save_frames_to_disk=True)

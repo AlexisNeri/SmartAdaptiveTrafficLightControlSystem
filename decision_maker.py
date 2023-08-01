@@ -2,49 +2,36 @@ from gpiozero import LED
 from time import sleep
 
 # Initialize GPIO ports to use for traffic light control
-red_1 = LED(22)
-yellow_1 = LED(27)
-green_1 = LED(17)
-red_2 = LED(14)
-yellow_2 = LED(15)
-green_2 = LED(18)
+TRAFFIC_LIGHT_1 = {'red': LED(22), 'yellow': LED(27), 'green': LED(17)}
+TRAFFIC_LIGHT_2 = {'red': LED(14), 'yellow': LED(15), 'green': LED(18)}
+
+
+def stop_traffic_flow(traffic_light):
+    traffic_light['red'].off()
+    traffic_light['yellow'].on()
+    traffic_light['green'].off()
+    sleep(3)
+    traffic_light['red'].on()
+    traffic_light['yellow'].off()
+
+
+def start_traffic_flow(traffic_light):
+    traffic_light['red'].off()
+    traffic_light['yellow'].off()
+    traffic_light['green'].on()
 
 
 def decision_maker(street_1_counter, street_2_counter, time_last_change, current_main_road):
-    # If counter for street on red phase is greater than counter for street on green phase
-    # or waiting time exceed current hardcoded values, interchange states
     if current_main_road == 1:
         if street_2_counter > street_1_counter or time_last_change >= 42:
-            red_1.off()
-            yellow_1.on()
-            green_1.off()
-            red_2.on()
-            yellow_2.off()
-            green_2.off()
-            sleep(3)
-            red_1.on()
-            yellow_1.off()
-            green_1.off()
-            red_2.off()
-            yellow_2.off()
-            green_2.on()
+            stop_traffic_flow(TRAFFIC_LIGHT_1)
+            start_traffic_flow(TRAFFIC_LIGHT_2)
             current_main_road = 2
             time_last_change = 0
     else:
         if street_1_counter > street_2_counter or time_last_change >= 26:
-            red_2.off()
-            yellow_2.on()
-            green_2.off()
-            red_1.on()
-            yellow_1.off()
-            green_1.off()
-            sleep(3)
-            red_2.on()
-            yellow_2.off()
-            green_2.off()
-            red_1.off()
-            yellow_1.off()
-            green_1.on()
+            stop_traffic_flow(TRAFFIC_LIGHT_2)
+            start_traffic_flow(TRAFFIC_LIGHT_1)
             current_main_road = 1
             time_last_change = 0
 

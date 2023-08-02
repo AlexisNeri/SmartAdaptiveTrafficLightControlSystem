@@ -2,8 +2,8 @@ from gpiozero import LED
 from time import sleep
 
 # Initialize GPIO ports to use for traffic light control
-TRAFFIC_LIGHT_1 = {'red': LED(22), 'yellow': LED(27), 'green': LED(17)}
-TRAFFIC_LIGHT_2 = {'red': LED(14), 'yellow': LED(15), 'green': LED(18)}
+TRAFFIC_LIGHT_1 = {'red': LED(18), 'yellow': LED(15), 'green': LED(14)}
+TRAFFIC_LIGHT_2 = {'red': LED(4), 'yellow': LED(3), 'green': LED(2)}
 
 
 def stop_traffic_flow(traffic_light):

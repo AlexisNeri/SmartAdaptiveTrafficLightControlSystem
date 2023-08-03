@@ -4,6 +4,7 @@ import math
 import time
 import datetime
 import xlsxwriter
+import sys
 
 import car_counter
 import decision_maker
@@ -46,7 +47,7 @@ def main_module(main_street_vsource, secondary_street_vsource, show_output=False
             break
 
         # Process 1 frame per second
-        if counter == main_vsource_fps / 2:
+        if counter == main_vsource_fps // 2:
             begin = time.time()
             street_1_count, street_1_bbox = car_counter.car_counter(main_frame, ['vehicle_entering_intersection'],
                                                                     debug_log=show_inf_logs)
@@ -80,6 +81,5 @@ def main_module(main_street_vsource, secondary_street_vsource, show_output=False
     workbook.close()
 
 
-# TODO: Change video routes from hardcoded to dynamic
 if __name__ == '__main__':
-    main_module('Video/DJI_0075CM.MP4', 'Video/DJI_0076CS.MP4', show_output=True, save_frames_to_disk=True)
+    main_module(sys.argv[1], sys.argv[2], show_output=True)

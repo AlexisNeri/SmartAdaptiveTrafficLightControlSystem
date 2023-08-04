@@ -1,4 +1,5 @@
 opencv-python
+tensorflow
 imutils
 xlsxwriter
 cvlib

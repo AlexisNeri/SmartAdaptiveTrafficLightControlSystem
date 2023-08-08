@@ -1,4 +1,4 @@
-# Traffic Management System using Car Detection and Decision-Making
+# Traffic Management System using Computer Vision and Edge Computing
 
 ## Overview
 This project implements a Traffic Management System using computer vision techniques to detect vehicles and make intelligent decisions to control traffic lights at an intersection. The system consists of four main modules:
@@ -14,6 +14,7 @@ This project implements a Traffic Management System using computer vision techni
 ## Requirements
 - Python 3.10+
 - OpenCV (cv2)
+- tensorflow
 - imutils
 - xlsxwriter
 - cvlib (YOLO-based object detection)
@@ -25,8 +26,9 @@ This project implements a Traffic Management System using computer vision techni
 
 ## Usage
 1. Connect two street cameras to the computer running the Traffic Management System.
-2. Update the video sources in `main.py` to point to the streams from the cameras.
-3. Run the Traffic Management System using the command: `python main.py`.
+2. Connect and update the GPIO pins referenced at `decision_maker.py` for traffic light control.
+3. Run the Traffic Management System using the command: `python main.py 0 1`.
+   1. For video files use: `python main.py 'route/to/file1' 'route/to/file2'`.
 
 ## Customization
 - You can adjust the time intervals and decision logic in `decision_maker.py` to suit your specific traffic management requirements.
